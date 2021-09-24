@@ -12,7 +12,7 @@ export interface TodosProps {
   todos: TodoProps[];
 }
 
-const initialTodos: TodosProps['todos'] = [
+const initialTodos: TodoProps[] = [
   {
     id: 0,
     text: '坐捷運',
@@ -28,8 +28,8 @@ const initialTodos: TodosProps['todos'] = [
 ];
 
 export default function App(): JSX.Element {
-  const [todo, setTodo] = useState<TodoProps>({ id: null, text: null });
-  const [todos, setTodos] = useState<TodosProps['todos']>(initialTodos);
+  // const [todo, setTodo] = useState<TodoProps>({ id: null, text: null });
+  const [todos, setTodos] = useState<TodoProps[]>(initialTodos);
 
   // function addTodo(todo?: TodoProps) {
   //   if (todo) {
@@ -45,16 +45,12 @@ export default function App(): JSX.Element {
   //   return initialTodos;
   // }
 
-  function createTodos() {
-    
-  }
-
-  setTodos([...initialTodos, todo]);
+  // setTodos([...initialTodos, todo]);
 
   return (
     <div>
       <Title todos={todos} />
-      <Form todos={todos} setTodo={setTodo} />
+      <Form todos={todos} setTodos={setTodos}/>
       <List todos={todos} />
     </div>
   );

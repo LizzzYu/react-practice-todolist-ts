@@ -1,12 +1,12 @@
 import React from 'react';
-import { TodosProps } from '../App';
+import { TodoProps } from '../App';
 
-export default function Title(props: TodosProps): JSX.Element {
+interface TitleProps {
+  todos: TodoProps[];
+}
+
+export default function Title(props: TitleProps): JSX.Element {
   const { todos } = props;
 
-  return (
-    <h2>
-      待辦事項清單({todos.length})
-    </h2>
-  );
+  return <h2>待辦事項清單({todos.length})</h2>;
 }
