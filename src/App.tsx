@@ -5,7 +5,7 @@ import Title from './components/Title';
 
 export interface TodoProps {
   id: number;
-  text: string | null;
+  text: string;
 }
 
 export interface TodosProps {
@@ -28,14 +28,25 @@ const initialTodos: TodoProps[] = [
 ];
 
 export default function App(): JSX.Element {
-  // const [todo, setTodo] = useState<TodoProps>({ id: null, text: null });
   const [todos, setTodos] = useState<TodoProps[]>(initialTodos);
+
+  function removeTodo(id: number) {
+    const removedTodos = todos.filter((todo) => todo.id !== id);
+
+    setTodos(removedTodos);
+  }
+
+  function createTodo(todo: TodoProps) {
+    if (todo.text === '') return;
+
+    setTodos([...todos, todo]);
+  }
 
   return (
     <div>
       <Title todos={todos} />
-      <Form todos={todos} setTodos={setTodos}/>
-      <List todos={todos} setTodos={setTodos}/>
+      <Form todos={todos} createTodo={createTodo} />
+      <List todos={todos} removeTodo={removeTodo} />
     </div>
   );
 }

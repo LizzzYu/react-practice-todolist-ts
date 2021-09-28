@@ -2,18 +2,12 @@ import React from 'react';
 import { TodoProps } from '../App';
 
 interface ListProps {
-  setTodos: React.Dispatch<React.SetStateAction<TodoProps[]>>;
   todos: TodoProps[];
+  removeTodo: (id: number) => void;
 }
 
 export default function List(props: ListProps): JSX.Element {
-  const { todos, setTodos } = props;
-
-  function removeTodo(id: number) {
-    const removedTodos = todos.filter(todo => todo.id !== id);
-
-    setTodos(removedTodos)
-  }
+  const { todos, removeTodo } = props;
 
   return (
     <div>
